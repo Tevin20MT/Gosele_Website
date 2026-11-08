@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Gosele Consulting and Projects: construction, project management and consulting.">
-    <title>Request | Gosele Consulting and Projects</title>
+    <meta name="description" content="Request a consultation with Gosele Consulting for training, occupational health and safety, stakeholder facilitation or ISO management systems support.">
+    <title>Request a Consultation | Gosele Consulting</title>
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
 <section>
     <div class="wrap">
-        <div class="card">
-            <h1>Request a Quote</h1>
-            <p>Tell us about your project and we’ll map a practical, cost-conscious path to delivery.</p>
-            <div class="circ">↓</div>
+        <div class="card page-hero hero-request">
+            <h1>Request a Consultation</h1>
+            <p>Tell us what support your organisation needs and we’ll be in touch.</p>
+            <a class="circ" href="#request-form" aria-label="Scroll to the consultation request form">↓</a>
         </div>
     </div>
 </section>
-<section>
+<section id="request-form">
     <div class="wrap">
         <form class="grey" data-mail="Quote request">
             <h2>
-                Request a quote
+                Request a consultation
             </h2>
             <label>
                 Full name *
@@ -36,27 +36,30 @@
             </label>
             <input name="Company">
             <label>
-                Project type
+                Service area
             </label>
-            <select name="Project type">
+            <select name="Service area">
                 <option>
-                    Construction
+                    Skills development and accredited training
                 </option>
                 <option>
-                    Renovation
+                    Occupational health and safety compliance
                 </option>
                 <option>
-                    Consulting
+                    Social and stakeholder facilitation
                 </option>
                 <option>
-                    Project management
+                    ISO management systems
+                </option>
+                <option>
+                    Other
                 </option>
             </select>
             <label>
-                Project details *
+                How can we help? *
             </label>
             <textarea name="Details" required></textarea>
-            <button class="go" type="submit">Submit</button>
+            <button class="go" type="submit">Send request</button>
             <p class="status"></p>
         </form>
     </div>
