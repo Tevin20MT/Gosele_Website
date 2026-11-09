@@ -1,0 +1,9 @@
+Options -Indexes
+
+<FilesMatch "^(config(\.example)?|mail-common)\.php$">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "\.(json|log|txt)$">
+    Require all denied
+</FilesMatch>

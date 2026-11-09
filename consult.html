@@ -1,42 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Book a consultation with Gosele Consulting to discuss your organisation’s training, safety, stakeholder facilitation or ISO needs.">
-    <title>Book a Consultation | Gosele Consulting</title>
-    <link rel="icon" type="image/png" href="assets/gosele-favicon.png">
-    <link rel="stylesheet" href="CSS/style.css">
-</head>
-<body>
-<section>
-    <div class="wrap">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Request a consultation with Gosele Consulting for training, occupational health and safety, stakeholder facilitation or ISO management systems support."
+    />
+    <title>Request a Consultation | Gosele Consulting</title>
+    <link rel="icon" type="image/png" href="assets/gosele-favicon.png" />
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body>
+    <section>
+      <div class="wrap">
         <div class="card page-hero hero-consult">
-            <h1>Book a Consultation</h1>
-            <p>Tell us what you’d like to discuss and we’ll get back to you.</p>
-            <a class="circ" href="#consultation-form" aria-label="Scroll to the consultation form">↓</a>
+          <h1>Request a Consultation</h1>
+          <p>Tell us what you’d like to discuss and we’ll get back to you.</p>
+          <a
+            class="circ"
+            href="#consultation-form"
+            aria-label="Scroll to the consultation form"
+            >↓</a
+          >
         </div>
-    </div>
-</section>
-<section id="consultation-form">
-    <div class="wrap">
-        <form class="grey" data-mail="Consultation booking">
-            <h2>Consultation</h2>
-            <label>Full name *</label>
-            <input name="Name" required>
-            <label>Email *</label>
-            <input type="email" name="Email" required>
-            <label>Phone</label>
-            <input name="Phone">
-            <label>Preferred date</label>
-            <input type="date" name="Date">
-            <label>What would you like to discuss?</label>
-            <textarea name="Topic"></textarea>
-            <button class="go" type="submit">Submit</button>
-            <p class="status"></p>
+      </div>
+    </section>
+    <section id="consultation-form">
+      <div class="wrap">
+        <form
+          class="grey"
+          action="forms/consultation-handler.php"
+          data-endpoint="forms/consultation-handler.php"
+          method="post"
+        >
+          <h2>Consultation</h2>
+          <label for="consult-full-name">Full name *</label>
+          <input
+            id="consult-full-name"
+            name="full_name"
+            autocomplete="name"
+            maxlength="160"
+            required
+          />
+          <label for="consult-email">Email *</label>
+          <input
+            id="consult-email"
+            type="email"
+            name="email"
+            autocomplete="email"
+            maxlength="254"
+            required
+          />
+          <label for="consult-company">Company</label>
+          <input
+            id="consult-company"
+            name="company"
+            autocomplete="organization"
+            maxlength="160"
+          />
+          <label for="consult-service-area">Service area *</label>
+          <select id="consult-service-area" name="service_area" required>
+            <option value="" selected disabled>Select a service area</option>
+            <option value="Skills development and accredited training">
+              Skills development and accredited training
+            </option>
+            <option value="Occupational health and safety compliance">
+              Occupational health and safety compliance
+            </option>
+            <option value="Social and stakeholder facilitation">
+              Social and stakeholder facilitation
+            </option>
+            <option value="ISO management systems">
+              ISO management systems
+            </option>
+            <option value="Other">Other</option>
+          </select>
+          <label for="consult-details">Consultation details *</label>
+          <textarea
+            id="consult-details"
+            name="details"
+            maxlength="5000"
+            required
+          ></textarea>
+          <div class="form-trap" aria-hidden="true">
+            <label for="consult-website">Leave this field empty</label>
+            <input
+              id="consult-website"
+              name="website"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+          <button class="go" type="submit">Send request</button>
+          <p
+            class="status"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></p>
         </form>
-    </div>
-</section>
-<script src="JS/script.js"></script>
-</body>
+      </div>
+    </section>
+    <script src="JS/script.js"></script>
+  </body>
 </html>

@@ -679,6 +679,32 @@ section {
   margin-top: 12px;
   display: none;
 }
+.status.is-success,
+.status.is-error {
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: #fff;
+}
+.status.is-success {
+  color: #174b2d;
+}
+.status.is-error {
+  color: #7a1f1f;
+}
+.status.is-sending {
+  opacity: 0.9;
+}
+.form-trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.grey button.go:disabled {
+  cursor: wait;
+  opacity: 0.75;
+}
 .status a {
   color: #fff;
   font-weight: 700;

@@ -3,7 +3,7 @@ const NAV = [
   ["about.html", "About"],
   ["services.html", "Services"],
   ["projects.html", "Our Impact"],
-  ["request.html", "Request a Consultation"],
+  ["consult.html", "Request a Consultation"],
   ["contact.html", "Contact"],
 ];
 const page = location.pathname.split("/").pop() || "index.html";
@@ -136,34 +136,67 @@ window.addEventListener("pageshow", () => {
   document.body.classList.remove("page-leaving");
 });
 
-const contactAddress = "info@goseleconsult.co.za";
-document.querySelectorAll("form[data-mail]").forEach((form) => {
-  form.addEventListener("submit", (event) => {
+function showFormStatus(status, message, state) {
+  status.textContent = message;
+  status.classList.remove("is-success", "is-error", "is-sending");
+  status.classList.add(`is-${state}`);
+  status.setAttribute("role", state === "error" ? "alert" : "status");
+  status.setAttribute("aria-live", state === "error" ? "assertive" : "polite");
+  status.style.display = "block";
+}
+
+document.querySelectorAll("form[data-endpoint]").forEach((form) => {
+  const submitButton = form.querySelector('button[type="submit"]');
+  const status = form.querySelector(".status");
+  const buttonLabel = submitButton.textContent;
+
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (form.dataset.submitting === "true" || !form.reportValidity()) return;
 
-    const body = Array.from(
-      new FormData(form),
-      ([name, value]) => `${name}: ${value}`,
-    ).join("\n");
-    const subject = form.dataset.mail || "Website enquiry";
-    const mailtoUrl = `mailto:${contactAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    const status = form.querySelector(".status");
+    form.dataset.submitting = "true";
+    form.setAttribute("aria-busy", "true");
+    submitButton.disabled = true;
+    submitButton.textContent = "Sending...";
+    showFormStatus(status, "Sending your message...", "sending");
 
-    if (status) {
-      status.replaceChildren(
-        document.createTextNode(
-          "Your email app should open with this enquiry. If it doesn't, email ",
-        ),
+    try {
+      const response = await fetch(form.dataset.endpoint, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      const result = await response.json().catch(() => null);
+
+      if (!response.ok || !result || result.success !== true) {
+        throw new Error(
+          result?.errors
+            ? Object.values(result.errors).join(" ")
+            : result?.message ||
+              "We couldn't send your message. Please try again later.",
+        );
+      }
+
+      form.reset();
+      showFormStatus(status, result.message, "success");
+    } catch (error) {
+      showFormStatus(
+        status,
+        error instanceof TypeError
+          ? "Unable to connect to the server. Check your connection and try again."
+          : error instanceof Error
+            ? error.message
+            : "We couldn't send your message. Please try again later.",
+        "error",
       );
-
-      const fallbackLink = document.createElement("a");
-      fallbackLink.href = `mailto:${contactAddress}`;
-      fallbackLink.textContent = contactAddress;
-      status.append(fallbackLink, document.createTextNode(" directly."));
-      status.style.display = "block";
-      status.setAttribute("role", "status");
+    } finally {
+      form.dataset.submitting = "false";
+      form.removeAttribute("aria-busy");
+      submitButton.disabled = false;
+      submitButton.textContent = buttonLabel;
     }
-
-    location.href = mailtoUrl;
   });
 });
