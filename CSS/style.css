@@ -480,9 +480,17 @@ section {
 .center .blk > div {
   text-align: center;
 }
+.service-cta-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 12px;
+}
 .course-catalog {
   margin-top: 32px;
   text-align: left;
+}
+.course-catalog > h2:not(:first-child) {
+  margin-top: 36px;
 }
 .course-catalog > h2 {
   color: var(--or);
