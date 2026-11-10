@@ -67,7 +67,7 @@ document.body.insertAdjacentHTML(
   <div class="grey office">
     <div>
       <h4>Insight. Action. Impact.</h4>
-      <p>Skills development, workplace safety, stakeholder facilitation and ISO management systems.</p>
+      <p>Skills Development, Workplace Safety Compliance, Stakeholder Engagement Facilitation and ISO Management Systems.</p>
     </div>
     <div>
       <h4>Contact us</h4>
@@ -78,7 +78,7 @@ document.body.insertAdjacentHTML(
       </p>
     </div>
     <p class="copy">
-      © <span id="yr"></span> Gosele Consulting. All rights reserved.<br>
+      © <span id="yr"></span> Gosele Consulting &amp; Projects. All rights reserved.<br>
       <span class="credit">Designed by Matsogo Tau Projects (PTY) LTD</span>
     </p>
   </div>
