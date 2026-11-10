@@ -28,19 +28,14 @@ body {
 @keyframes page-enter {
   from {
     opacity: 0;
-    transform: translateY(10px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 body.page-leaving {
   opacity: 0;
-  transform: translateY(-4px);
-  transition:
-    opacity 0.26s ease-in,
-    transform 0.26s ease-in;
+  transition: opacity 0.26s ease-in;
 }
 a {
   color: inherit;
